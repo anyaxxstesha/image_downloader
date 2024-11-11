@@ -1,15 +1,10 @@
-import os
 from pathlib import Path
-
-import dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-dotenv.load_dotenv(BASE_DIR / '.env')
+SECRET_KEY = 'django-insecure-8e9%*#lvr4^@sl2wtvwmino@6906kq34gcc4e1ip_*ffxwr3%s'
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-
-DEBUG = os.getenv('DEBUG', False) == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -20,6 +15,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'image_loader',
 ]
 
 MIDDLEWARE = [
@@ -37,7 +34,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,3 +82,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = 'media/'
